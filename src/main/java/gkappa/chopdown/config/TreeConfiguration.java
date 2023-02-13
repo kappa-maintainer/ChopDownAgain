@@ -3,6 +3,8 @@ package gkappa.chopdown.config;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -36,20 +38,20 @@ public class TreeConfiguration {
 	private int leaf_limit = 12;
 	private int trunk_radius = 1;
 	private int min_vertical_logs = 0;
-	private List<String> logs;
-	private List<String> leaves;
-	private String[] leaves_merged;
-	private String[] blocks = null;
+	private List<? extends String> logs;
+	private List<? extends String> leaves;
+	private List<? extends String> leaves_merged;
+	private List<? extends String> blocks = null;
 
 	public TreeConfiguration() {
 	}
-	public TreeConfiguration(int radius, int leaf_limit, int min_logs, int trunk_radius, String[] logs,
-			String[] leaves) {
+	public TreeConfiguration(int radius, int leaf_limit, int min_logs, int trunk_radius, List<? extends String> logs,
+							 List<? extends String> leaves) {
 		this.radius = radius;
 		this.leaf_limit = leaf_limit;
 		this.trunk_radius = trunk_radius;
-		this.logs = new ArrayList<String>(Arrays.asList(logs));
-		this.leaves = new ArrayList<String>(Arrays.asList(leaves));;
+		this.logs = logs;
+		this.leaves = leaves;
 		this.min_vertical_logs = min_logs;
 	}
 	public TreeConfiguration(int radius, int leaf_limit, int min_logs, int trunk_radius) {
@@ -59,11 +61,11 @@ public class TreeConfiguration {
 		this.min_vertical_logs = min_logs;
 	}
 	public TreeConfiguration setLogs(String... logs) {
-		this.logs = new ArrayList<String>(Arrays.asList(logs));
+		this.logs = new ArrayList<>(Arrays.asList(logs));
 		return this;
 	}
 	public TreeConfiguration setLeaves(String... leaves) {
-		this.leaves = new ArrayList<String>(Arrays.asList(leaves));
+		this.leaves = new ArrayList<>(Arrays.asList(leaves));
 		return this;
 	}
 
@@ -85,40 +87,33 @@ public class TreeConfiguration {
 		return false;
 	}
 
-	public List<String> Logs() {
+	public List<? extends String> Logs() {
 		return logs;
 	}
 
 	//Gets all leaves after merging the shared leaves (beehives etc)
-	public String[] Leaves() {
+	public List<? extends String> Leaves() {
 		if (leaves_merged == null) {
-			leaves_merged = Config.MergeArray(Config.ConvertListToArray(leaves), Config.sharedLeaves);
+			leaves_merged = OptionsHolder.Common.MergeArray(leaves, OptionsHolder.COMMON.sharedLeaves.get());
 		}
 		return leaves_merged;
 	}
 	//Gets all blocks associated with this tree
-	public String[] Blocks() {
+	public List<? extends String> Blocks() {
 		if (blocks == null) {
-			blocks =ArrayUtils.addAll(Config.ConvertListToArray(logs), Leaves());
+			logs = Stream.of(logs, Leaves()).flatMap(List::stream).distinct().collect(Collectors.toList());
+			blocks = logs;
 		}
 		return blocks;
 	}
 
 	public void Merge(TreeConfiguration newTree) {
 		// TODO Auto-generated method stub
-		for (String log : newTree.Logs()) {
-			if (!logs.contains(log)) {
-				logs.add(log);
-			}
-		}
-		for (String leaf : newTree.Leaves()) {
-			if (!leaves.contains(leaf)) {
-				leaves.add(leaf);
-			}
-		}
+		logs = Stream.of(logs, newTree.Logs()).flatMap(List::stream).distinct().collect(Collectors.toList());
+		leaves = Stream.of(leaves, newTree.Leaves()).flatMap(List::stream).distinct().collect(Collectors.toList());
 		leaves_merged = null;
 	}
 	public TreeConfiguration Clone() {
-		return new TreeConfiguration(radius,leaf_limit,min_vertical_logs,trunk_radius,Config.ConvertListToArray(logs),Config.ConvertListToArray(leaves));
+		return new TreeConfiguration(radius,leaf_limit,min_vertical_logs,trunk_radius, logs,leaves);
 	}
 }

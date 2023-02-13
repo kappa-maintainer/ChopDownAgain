@@ -40,11 +40,11 @@ import java.util.concurrent.Executors;
 @Mod("chopdown")
 public class ChopDown
 {
+    public static final Logger LOGGER = LogManager.getLogger("chopdown");
     ExecutorService executor;
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
     public static LinkedList<Tree> FallingTrees = new LinkedList<Tree>();
-    public ChopDown() {
+    public ChopDown() throws Exception {
         // Register the setup method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         // Register the enqueueIMC method for modloading
@@ -56,7 +56,8 @@ public class ChopDown
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OptionsHolder.COMMON_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OptionsHolder.COMMON_SPEC, "chopdown.toml");
+        OptionsHolder.Common.postConfig();
     }
 
     @SubscribeEvent
@@ -71,7 +72,7 @@ public class ChopDown
         BlockPos pos = event.getPos();
 
         if (!Tree.isWood(pos, world)
-                || !ArrayUtils.contains(OptionsHolder.COMMON.allowedPlayers.get(), event.getPlayer().getClass().getName())) {
+                || !OptionsHolder.COMMON.allowedPlayers.get().contains(event.getPlayer().getClass().getName())) {
             return;
         }
         event.getPlayer().getMainHandItem();
