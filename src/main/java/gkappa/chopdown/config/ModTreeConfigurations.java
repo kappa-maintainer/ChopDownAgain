@@ -57,9 +57,6 @@ public class ModTreeConfigurations {
 	 */
 	public ModTreeConfigurations() {
 		Mods.put("Vanilla", Vanilla.Trees);
-		Mods.put("AbyssalCraft", AbyssalCraft.Trees);
-		Mods.put("AetherLegacy", AetherLegacy.Trees);
-		Mods.put("BetterWithAddons", BetterWithAddons.Trees);
 		Mods.put("BiomesOPlenty", BiomesOPlenty.Trees);
 		Mods.put("Cuisine", Cuisine.Trees);
 		Mods.put("DefiledLands", DefiledLands.Trees);
