@@ -3,26 +3,21 @@ package gkappa.chopdown.config.mods;
 import gkappa.chopdown.config.TreeConfiguration;
 
 public class BiomesOPlenty {
-	public static TreeConfiguration[] Trees = new TreeConfiguration[] { 
-			new TreeConfiguration(16,12,0,3).setLogs("biomesoplenty:log_0:4").setLeaves("biomesoplenty:leaves_3:7","biomesoplenty:leaves_3:11"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_0:5").setLeaves("biomesoplenty:leaves_2:1","biomesoplenty:leaves_2:2","biomesoplenty:leaves_2:9","biomesoplenty:leaves_2:10"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_0:6").setLeaves("biomesoplenty:leaves_1:8","biomesoplenty:leaves_0:6"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_0:7").setLeaves("biomesoplenty:leaves_1:6","biomesoplenty:leaves_1:10"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_1:4").setLeaves("biomesoplenty:leaves_0:6"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_1:5").setLeaves("biomesoplenty:leaves_0:3","biomesoplenty:leaves_0:11"),
-			new TreeConfiguration(9,12,0,3).setLogs("biomesoplenty:log_1:6").setLeaves("biomesoplenty:leaves_4:0","biomesoplenty:leaves_4:8"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_1:7").setLeaves("biomesoplenty:leaves_4:9","biomesoplenty:leaves_4:17"),
-			new TreeConfiguration(9,12,0,5).setLogs("biomesoplenty:log_2:4").setLeaves("biomesoplenty:leaves_4:2","biomesoplenty:leaves_4:10"),
-			new TreeConfiguration(9,12,4,1).setLogs("biomesoplenty:log_2:5").setLeaves("biomesoplenty:leaves_4:3","biomesoplenty:leaves_4:11"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_2:6").setLeaves("biomesoplenty:leaves_5:4","biomesoplenty:leaves_5:8"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_2:7").setLeaves("biomesoplenty:leaves_3:8"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_3:4").setLeaves("biomesoplenty:leaves_3:6","biomesoplenty:leaves_3:10"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_3:5").setLeaves("biomesoplenty:leaves_5:5","biomesoplenty:leaves_5:9"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_3:6").setLeaves("biomesoplenty:leaves_5:6","biomesoplenty:leaves_5:10"),
-			new TreeConfiguration().setLogs("biomesoplenty:log_3:7").setLeaves("biomesoplenty:leaves_5:7","biomesoplenty:leaves_5:11"),
-			new TreeConfiguration().setLogs("minecraft:log:0").setLeaves("biomesoplenty:leaves_0:1","biomesoplenty:leaves_3:9","biomesoplenty:leaves_3:5","biomesoplenty:leaves_2:3","biomesoplenty:leaves_1:5","biomesoplenty:leaves_2:11","biomesoplenty:leaves_2:8","biomesoplenty:leaves_1:9"),
-			new TreeConfiguration().setLogs("minecraft:log:2").setLeaves("biomesoplenty:leaves_0:0","biomesoplenty:leaves_0:8"),
-			new TreeConfiguration().setLogs("minecraft:log2:0").setLeaves("biomesoplenty:leaves_0:1"),
-			new TreeConfiguration().setLogs("minecraft:log2:1").setLeaves("biomesoplenty:leaves_0:1","biomesoplenty:leaves_1:5","biomesoplenty:leaves_0:9")
+	public static TreeConfiguration[] Trees = new TreeConfiguration[] {
+			new TreeConfiguration(9,12,0,5).setLogs("biomesoplenty:redwood_log", "biomesoplenty:stripped_redwood_log").setLeaves("biomesoplenty:redwood_leaves"),
+			new TreeConfiguration(9,12,4,1).setLogs("biomesoplenty:willow_log", "biomesoplenty:stripped_willow_log").setLeaves("biomesoplenty:willo_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:fir_log", "biomesoplenty:stripped_fir_log").setLeaves("biomesoplenty:fir_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:cherry_log", "biomesoplenty:stripped_cherry_log").setLeaves("biomesoplenty:pink_cherry_leaves", "biomesoplenty:white_cherry_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:mahogany_log", "biomesoplenty:stripped_mahogany_log").setLeaves("biomesoplenty:mahogany_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:jacaranda_log", "biomesoplenty:stripped_jacaranda_log").setLeaves("biomesoplenty:jacaranda_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:palm_log", "biomesoplenty:stripped_palm_log").setLeaves("biomesoplenty:palm_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:dead_log", "biomesoplenty:stripped_dead_log").setLeaves("biomesoplenty:dead_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:magic_log", "biomesoplenty:stripped_magic_log").setLeaves("biomesoplenty:magic_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:umbran_log", "biomesoplenty:stripped_umbran_log").setLeaves("biomesoplenty:umbran_leaves"),
+			new TreeConfiguration().setLogs("biomesoplenty:hellbark_log", "biomesoplenty:stripped_hellbark_log").setLeaves("biomesoplenty:hellbark_leaves"),
+
+			new TreeConfiguration().setLogs("minecraft:birch_log", "minecraft:stripped_birch_log").setLeaves("biomesoplenty:rainbow_birch_leaves", "biomesoplenty:yellow_autumn_leaves", "biomesoplenty:orange_autumn_leaves"),
+			new TreeConfiguration().setLogs("minecraft:oak_log", "minecraft:stripped_oak_log").setLeaves("biomesoplenty:origin_leaves", "biomesoplenty:flowering_oak_leaves"),
+
 			};
 }
